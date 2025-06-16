@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import ProductList from './pages/ProductList';
+import CarrotMain from './pages/CarrotMain';
+import ProductDetail from './pages/ProductDetail';
+import { Outlet, Route, Routes, Link } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+
+      <nav>
+        <Link to='/carrotmain'>메인 화면</Link> <br />
+        <Link to='/productlist'>상품 리스트</Link> <br />
+        <Link to='/productdetail'>상세 페이지</Link>
+      </nav>
+      <Routes>
+        <Route path='/carrotmain' element={<CarrotMain />} />
+        <Route path='/productlist' element={<ProductList />} />
+        <Route path='/productdetail' element={<ProductDetail />} />
+      </Routes>
+
+      <Outlet />
+
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
