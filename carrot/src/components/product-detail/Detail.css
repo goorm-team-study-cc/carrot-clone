@@ -2,9 +2,21 @@
   border: 1px solid black;
 } */
 
+.info__media {
+  border: 1px solid black;
+  position: relative;
+}
+
+.profile {
+  position: absolute;
+  bottom: 0px;
+}
 .product__image {
   width: 200px;
   height: 200px;
+  position: sticky;
+  top: 0px;
+  bottom: 100px;
 }
 
 .profile__image {
@@ -31,4 +43,8 @@
 /* ml = margin left의 약자 */
 .ml-auto {
   margin-left: auto;
+}
+
+.empty-box {
+  height: 1000px;
 }
