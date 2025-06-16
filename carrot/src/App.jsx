@@ -1,12 +1,29 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-// import "./App.css";
-import DetailLayout from "./components/product-detail/DetailLayout";
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import ProductList from './pages/ProductList';
+import CarrotMain from './pages/CarrotMain';
+import ProductDetail from './pages/ProductDetail';
+import { Outlet, Route, Routes, Link } from 'react-router-dom';
+
 function App() {
   return (
     <>
-      <DetailLayout />
+      <Header />
+
+      <nav>
+        <Link to='/carrotmain'>메인 화면</Link> <br />
+        <Link to='/productlist'>상품 리스트</Link> <br />
+        <Link to='/productdetail'>상세 페이지</Link>
+      </nav>
+      <Routes>
+        <Route path='/carrotmain' element={<CarrotMain />} />
+        <Route path='/productlist' element={<ProductList />} />
+        <Route path='/productdetail' element={<ProductDetail />} />
+      </Routes>
+
+      <Outlet />
+
+      <Footer />
     </>
   );
 }
