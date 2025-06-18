@@ -1,0 +1,38 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0.87);
+  color: #242424;
+}
+
+.market__list {
+  /* max-width는 나중에 바뀔수도! */
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.market__nav__info ol {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.market__nav__info ol li {
+  font-size: 0.9rem;
+  color: #737373;
+}
+
+.market__now__location {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.market__item__section {
+  display: flex;
+  gap: 1rem; /* 간격 조절 */
+}
