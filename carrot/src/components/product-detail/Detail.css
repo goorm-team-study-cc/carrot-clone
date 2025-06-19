@@ -2,21 +2,37 @@
   border: 1px solid black;
 } */
 
+:root {
+  --main-color: #ff6600;
+  --grey: #868b94;
+}
+
+/*/ ////////////////
+/// info__media ///
+/////////////////*/
 .info__media {
-  border: 1px solid black;
+  border: 1px solid #000000;
+  /* position: relative; */
+  display: flex;
+  flex: 1;
+}
+
+.product__image--box {
   position: relative;
+
+  flex: 1;
+  border: 1px solid black;
+}
+.product__image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  position: sticky;
+  top: 0px;
 }
 
 .profile {
   position: absolute;
   bottom: 0px;
-}
-.product__image {
-  width: 200px;
-  height: 200px;
-  position: sticky;
-  top: 0px;
-  bottom: 100px;
 }
 
 .profile__image {
@@ -24,6 +40,48 @@
   height: 50px;
   border-radius: 50%;
 }
+
+/*/ ////////////////
+// info__content //
+/////////////////*/
+
+.info__content {
+  margin: 0rem 2rem 0rem 2rem;
+  flex: 1;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0rem;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  white-space: pre-line;
+  overflow-wrap: break-word; /* 단어 단위 줄바꿈 */
+  word-break: break-word; /* 긴 단어도 줄바꿈 */
+  overflow: auto; /* 넘치면 스크롤 */
+}
+.category {
+  text-decoration: underline;
+}
+
+.time {
+  color: var(--grey);
+}
+
+.qr {
+  background-color: var(--main-color);
+  color: white;
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+}
+
+/*/ ////////////////
+// user-products //
+/////////////////*/
 
 .preview__image {
   width: 100px;

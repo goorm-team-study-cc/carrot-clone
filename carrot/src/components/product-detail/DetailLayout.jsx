@@ -1,7 +1,10 @@
 import React from "react";
 import "./Detail.css";
+import products from "../../assets/products.json";
 
 export default function DetailLayout() {
+  const productData = products.find((entry) => entry.id == 214);
+
   return (
     <>
       <nav>
@@ -9,11 +12,13 @@ export default function DetailLayout() {
         <span>></span>
         <span>중고거래</span>
         <span>></span>
-        <span>⭐️바로전송🍗BHC후라이드반+양념반+콜라1.25L🍻</span>
+        <span>{productData.title}</span>
       </nav>
       <div className="info flex-row">
         <div className="info__media">
-          <img className="product__image" src="https://buly.kr/CLzSdgI"></img>
+          <div className="product__image--box">
+            <img className="product__image" src={productData.thumbnail}></img>
+          </div>
           <div className="profile flex-row">
             <img className="profile__image" src="https://buly.kr/CLzSdgI" />
             <div className="flex-column">
@@ -34,41 +39,21 @@ export default function DetailLayout() {
           </div>
         </div>
         <div className="info__content flex-column">
-          <span className="title">
-            ⭐️바로전송🍗BHC후라이드반+양념반+콜라1.25L🍻
-          </span>
+          <h1 className="title">{productData.title}</h1>
           <div className="flex-row">
-            <span>티켓/교환권</span>
-            <span>끌올 28분 전</span>
+            <span className="category">티켓/교환권</span>
+            <span className="time">끌올 28분 전</span>
           </div>
 
           <span className="price">21,000원</span>
-          <p>
-            유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️ 유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️ 유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️ 유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️유효기간:~7/22 언제든 연락주세요!
-            <br />
-            칼전송 해드립니다❤️
-          </p>
+          <p className="content">{productData.content}</p>
           <div className="flex-row">
             <span>채팅 0</span>
             <span>관심 2</span>
             <span>조회 11</span>
           </div>
 
-          <span>당근 앱에서 보기</span>
+          <span className="qr">당근 앱에서 보기</span>
         </div>
       </div>
       <hr></hr>
