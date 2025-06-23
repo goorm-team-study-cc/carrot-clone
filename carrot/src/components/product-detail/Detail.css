@@ -11,7 +11,7 @@
 /// info__media ///
 /////////////////*/
 .info__media {
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   /* position: relative; */
   display: flex;
   flex: 1;
@@ -19,10 +19,10 @@
 
 .product__image--box {
   position: relative;
-
   flex: 1;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
+
 .product__image {
   width: 100%;
   aspect-ratio: 1/1;
@@ -31,8 +31,7 @@
 }
 
 .profile {
-  position: absolute;
-  bottom: 0px;
+  margin-top: 0.5rem;
 }
 
 .profile__image {
@@ -49,6 +48,7 @@
   margin: 0rem 2rem 0rem 2rem;
   flex: 1;
 }
+
 .title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -93,7 +93,7 @@
   flex-direction: row;
 }
 
-.flex-column {
+.flex-col {
   display: flex;
   flex-direction: column;
 }

@@ -15,19 +15,19 @@ export default function DetailLayout() {
         <span>{productData.title}</span>
       </nav>
       <div className="info flex-row">
-        <div className="info__media">
+        <div className="info__media flex-col">
           <div className="product__image--box">
             <img className="product__image" src={productData.thumbnail}></img>
           </div>
           <div className="profile flex-row">
             <img className="profile__image" src="https://buly.kr/CLzSdgI" />
-            <div className="flex-column">
+            <div className="flex-col">
               <span>꿍야</span>
               <span>부림동</span>
             </div>
-            <div className="flex-column ml-auto">
+            <div className="flex-col ml-auto">
               <div className="flex-row">
-                <div className="flex-column">
+                <div className="flex-col">
                   <span>52.2'C</span>
                   <span>----</span>
                 </div>
@@ -38,7 +38,7 @@ export default function DetailLayout() {
             </div>
           </div>
         </div>
-        <div className="info__content flex-column">
+        <div className="info__content flex-col">
           <h1 className="title">{productData.title}</h1>
           <div className="flex-row">
             <span className="category">티켓/교환권</span>
@@ -63,7 +63,7 @@ export default function DetailLayout() {
           <span className="ml-auto">더 구경하기></span>
         </div>
         <div className="user-products__list flex-row">
-          <div className="preview flex-column">
+          <div className="preview flex-col">
             <img className="preview__image" src="https://buly.kr/CLzSdgI" />
             <span className="preview__title">초등 경제 동화</span>
             <span className="preview__price">4,000원</span>
@@ -78,7 +78,7 @@ export default function DetailLayout() {
           <span className="ml-auto">더 구경하기></span>
         </div>
         <div className="popular-products__list flex-row">
-          <div className="preview flex-column">
+          <div className="preview flex-col">
             <img className="preview__image" src="https://buly.kr/CLzSdgI" />
             <span className="preview__title">초등 경제 동화</span>
             <span className="preview__price">4,000원</span>
