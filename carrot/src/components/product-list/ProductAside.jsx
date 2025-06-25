@@ -1,45 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 
 export default function ProductAside() {
+  const [showAll, setShowAll] = useState(false);
+  const [selected, setSelected] = useState(locationArr[0]); // 첫 번째 값 기본 선택
+  const visibleItems = showAll ? locationArr : locationArr.slice(0, 6);
   return (
-    <section>
-      <aside>
-        <header>
+    <section className='product__aside__wrapper'>
+      <aside className='product__aside'>
+        <header className='product__aside__header'>
           <h3>필터</h3>
           <a href='#'>초기화</a>
         </header>
-        <section>
-          <div>
-            <input type='checkbox' name='isTradable' id='tradable' />
-            <label htmlFor='isTradable'>거래 가능만 보기</label>
+        <section className='product__aside__section'>
+          <div className='section__isSell'>
+            <Form.Check type='checkbox' name='isTradable' id='isTradable' label={'거래 가능만 보기'} />
           </div>
           <div className='market__aside__filter'>
             <h4>위치</h4>
             <p>서울특별시 서초구</p>
             <div className='aside__filter aside__location'>
-              <input type='radio' name='locationFilter' id='1' />
-              <label htmlFor='locationFilter'>서초동</label>
+              {visibleItems.map((value, index) => (
+                <Form.Check // prettier-ignore
+                  key={`location-${index}`}
+                  type={'radio'}
+                  name='locationCheck'
+                  id={index}
+                  label={value}
+                  checked={selected === value}
+                  onChange={() => setSelected(value)}
+                />
+              ))}
             </div>
+            {locationArr.length > 6 && (
+              <button className='btn--more' onClick={() => setShowAll((prev) => !prev)}>
+                {showAll ? '접기' : '더보기'}
+              </button>
+            )}
           </div>
           <div className='market__aside__filter'>
             <h4>카테고리</h4>
             <div className='aside__filter aside__category'>
-              <input type='radio' name='categoryFilter' id='1' />
-              <label htmlFor='categoryFilter'>디지털기기</label>
+              {keywords.map((value, index) => (
+                <Form.Check key={`category-${index}`} type='radio' name='categoryCheck' id={index} label={value} />
+              ))}
             </div>
           </div>
           <div className='market__aside__filter'>
             <h4>가격</h4>
             <div className='aside__filter aside__price'>
-              <button>나눔</button>
-              <button>5,000원 이하</button>
-              <button>10,000원 이하</button>
-              <button>20,000원 이하</button>
+              {priceFilter.map((value) => (
+                <figure key={value.price}>
+                  <button className='btn__aside--price'>{value.title}</button>
+                </figure>
+              ))}
               <div className='aside__price__input'>
-                <input type='number' name='minPrice' id='minPrice' /> -{' '}
-                <input type='number' name='maxPrice' id='maxPrice' />
+                <input type='number' name='minPrice' id='minPrice' className='input__price' />
+                <span> - </span>
+                <input type='number' name='maxPrice' id='maxPrice' className='input__price' />
               </div>
-              <input type='submit' value='적용하기' />
+              <input className='btn__aside--submit' type='submit' value='적용하기' />
             </div>
           </div>
         </section>
@@ -47,3 +67,60 @@ export default function ProductAside() {
     </section>
   );
 }
+
+const locationArr = [
+  '서초동',
+  '잠원동',
+  '반포동',
+  '방배동',
+  '양재동',
+  '서초4동',
+  '서초2동',
+  '서초3동',
+  '서초1동',
+  '반포1동',
+  '우면동',
+  '방배본동',
+  '반포3동',
+  '양재2동',
+  '반포4동',
+  '반포2동',
+  '방배4동',
+  '방배1동',
+  '방배2동',
+  '반포본동',
+  '양재1동',
+  '방배3동',
+  '내곡동',
+  '신원동',
+  '원지동',
+  '염곡동',
+];
+const keywords = [
+  '디지털기기',
+  '생활가전',
+  '가구/인테리어',
+  '생활/주방',
+  '유아동',
+  '유아도서',
+  '여성의류',
+  '여성잡화',
+  '남성패션/잡화',
+  '뷰티/미용',
+  '스포츠/레저',
+  '취미/게임/음반',
+  '도서',
+  '티켓/교환권',
+  '가공식품',
+  '건강기능식품',
+  '반려동물용품',
+  '식물',
+  '기타 중고물품',
+  '삽니다',
+];
+const priceFilter = [
+  { price: 0, title: '나눔' },
+  { price: 5000, title: '5,000원 이하' },
+  { price: 10000, title: '10,000원 이하' },
+  { price: 20000, title: '20,000원 이하' },
+];

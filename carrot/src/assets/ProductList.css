@@ -1,7 +1,7 @@
 .market__list-container {
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
 }
 
 .market__list {
@@ -41,13 +41,20 @@
   gap: 1rem; /* 간격 조절 */
 }
 
-/* 상품 리스트 아이템 section */
+/* ----------------------
+|                        |
+| 상품 리스트 아이템 section  |
+|                        |
+------------------------*/
+.Product__list {
+  width: 100%;
+}
 .list--right {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 .card__item__title {
   width: 100%;
@@ -84,9 +91,13 @@
   color: var(--gray-900);
 }
 
-/* ProductAside Component */
+/* ----------------------
+|                        |
+| ProductAside Component |
+|                        |
+------------------------*/
 .product__aside__wrapper {
-  width: 200vw;
+  width: 20%;
   height: 100vw;
 }
 
@@ -110,6 +121,12 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+/* aside 부분 나누는 border */
+.market__aside__filter {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1rem;
 }
 
 .market__aside__filter h4 {
@@ -160,6 +177,8 @@
 .aside__price__input {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .input__price {
