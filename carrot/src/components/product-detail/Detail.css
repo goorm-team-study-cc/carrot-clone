@@ -1,0 +1,232 @@
+/* * {
+  border: 1px solid black;
+} */
+
+/* :root {
+  --main-color: #ff6600;
+  --grey: #868b94;
+} */
+body {
+  margin-right: 4rem;
+  margin-left: 4rem;
+  /* overflow: hidden; */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.nav {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--gray-700);
+}
+/*/ ////////////////
+/// info__media ///
+/////////////////*/
+.info__media {
+  /* border: 1px solid #000000; */
+  /* position: relative; */
+  display: flex;
+  flex: 1;
+}
+
+.product__image--box {
+  flex: 1;
+  position: relative;
+  /* border: 1px solid black; */
+}
+
+.product__image {
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.profile {
+  margin-top: 0.5rem;
+}
+
+.profile__image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/*/ ////////////////
+// info__content //
+/////////////////*/
+
+.content-info {
+  flex: 1;
+  margin: 0rem 2rem 0rem 2rem;
+}
+
+.title {
+  margin: 0rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.content {
+  overflow: auto; /* 넘치면 스크롤 */
+  width: 100%;
+  height: 100%;
+  line-height: 2rem;
+  color: var(--gray-800);
+  white-space: pre-line;
+  word-break: break-word; /* 긴 단어도 줄바꿈 */
+  overflow-wrap: break-word; /* 단어 단위 줄바꿈 */
+}
+
+.category {
+  color: var(--gray-400);
+  text-decoration: underline;
+}
+
+.time {
+  color: var(--grey);
+  color: var(--gray-400);
+}
+
+.price {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.qr {
+  padding: 0.6rem;
+  background-color: var(--main-color);
+  color: white;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+/*/ ////////////////
+// user-products //
+/////////////////*/
+.user-products {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.user-products__list {
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+}
+
+.popular-products__list {
+  display: flex;
+  gap: 2%;
+  flex-wrap: wrap;
+}
+
+.preview {
+  width: 15%;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.preview__image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 0.5rem;
+  transition: transform 0.5s ease;
+}
+
+.preview__image:hover {
+  transform: scale(1.05);
+}
+
+.preview__title {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.preview__price {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/*/ ////////////////
+////// modal //////
+/////////////////*/
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-box {
+  position: fixed;
+  width: 20rem;
+  height: 20rem;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(23, 167, 167);
+}
+
+/*/ ////////////////
+// 공용 //
+/////////////////*/
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ml = margin left의 약자 */
+.ml-auto {
+  margin-left: auto;
+}
+
+.empty-box {
+  height: 1000px;
+}
+
+.margin-tb {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.main-color {
+  color: var(--main-color);
+}
+
+.caption {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.p1-strong {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.p1 {
+  font-size: 1rem;
+  font-weight: 400;
+}
