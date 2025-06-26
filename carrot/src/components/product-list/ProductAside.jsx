@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import { useLocation } from '../../contexts/LocationContext';
 
 export default function ProductAside() {
+  //지역정보 context
+  const { location, setLocation } = useLocation();
+  //지역 전체 보여줄지 여부
   const [showAll, setShowAll] = useState(false);
   const [selected, setSelected] = useState(locationArr[0]); // 첫 번째 값 기본 선택
   const visibleItems = showAll ? locationArr : locationArr.slice(0, 6);
+
   return (
     <section className='product__aside__wrapper'>
       <aside className='product__aside'>
@@ -18,7 +23,7 @@ export default function ProductAside() {
           </div>
           <div className='market__aside__filter'>
             <h4>위치</h4>
-            <p>서울특별시 서초구</p>
+            <p>서울특별시 {location}</p>
             <div className='aside__filter aside__location'>
               {visibleItems.map((value, index) => (
                 <Form.Check // prettier-ignore
@@ -28,7 +33,10 @@ export default function ProductAside() {
                   id={index}
                   label={value}
                   checked={selected === value}
-                  onChange={() => setSelected(value)}
+                  onChange={() => {
+                    setSelected(value);
+                    setLocation(value);
+                  }}
                 />
               ))}
             </div>

@@ -1,13 +1,16 @@
 import React from 'react';
 import '../assets/ProductList.css';
+import { useLocation } from '../contexts/LocationContext';
 //Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 //Components
 import ProductAside from '../components/product-list/ProductAside';
 import ProductItemList from '../components/product-list/ProductItemList';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function ProductList() {
+  const { location, setLocation } = useLocation();
+
   return (
     <div className='market__list-container'>
       <div className='market__list'>
@@ -22,7 +25,7 @@ export default function ProductList() {
         </nav>
         <h2 className='market__now__location'>
           {/* 서울특별시 서초구 {localData} 중고거래 */}
-          서울특별시 서초구 서초동 중고거래
+          서울특별시 서초구 {location} 중고거래
         </h2>
         <section className='market__item__section'>
           <ProductAside />
