@@ -1,16 +1,14 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  background-color: rgba(255, 255, 255, 0.87);
-  color: #242424;
+.market__list-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .market__list {
-  /* max-width는 나중에 바뀔수도! */
+  width: 100%;
   max-width: 1280px;
-  margin: 0 auto;
 }
+
 .market__nav__info ol {
   display: flex;
   flex-direction: row;
@@ -22,7 +20,13 @@
 
 .market__nav__info ol li {
   font-size: 0.9rem;
-  color: #737373;
+  color: var(--gray-700);
+}
+
+.market__nav__info a {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  text-decoration: none;
 }
 
 .market__now__location {
@@ -35,4 +39,172 @@
 .market__item__section {
   display: flex;
   gap: 1rem; /* 간격 조절 */
+}
+
+/* ----------------------
+|                        |
+| 상품 리스트 아이템 section  |
+|                        |
+------------------------*/
+.Product__list {
+  width: 100%;
+}
+.list--right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.card__item__title {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--gray-800);
+  margin: 0.8rem 0rem 0.3rem 0rem;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__item__price {
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 0.3rem;
+}
+
+.card__item__info {
+  font-weight: 300;
+  font-size: 0.7rem;
+  color: var(--gray-500);
+  margin-bottom: 2.4rem;
+}
+
+.product__btn__more {
+  width: 100%;
+  border: none;
+  background-color: var(--gray-100);
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+/* ----------------------
+|                        |
+| ProductAside Component |
+|                        |
+------------------------*/
+.product__aside__wrapper {
+  width: 20%;
+  height: 100vw;
+}
+
+.product__aside__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+.product__aside__header h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+.product__aside__header a {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.product__aside__section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* aside 부분 나누는 border */
+.market__aside__filter {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1rem;
+}
+
+.market__aside__filter h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.6rem 0rem 0.8rem 0rem;
+}
+
+.market__aside__filter p {
+  font-size: 1rem;
+}
+
+.aside__location {
+  width: 100%;
+  max-height: 15rem; /* 최대 높이 */
+  overflow-y: auto; /* 초과 시 스크롤 */
+  transition: max-height 0.3s ease;
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  flex-wrap: nowrap; /* 기본값. 넘치면 줄바꿈 없이 튀어나감 */
+  gap: 4px;
+}
+
+.btn--more {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #007bff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.aside__filter.aside__price {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn__aside--price {
+  background-color: none;
+  background: none;
+  font-size: 0.8rem;
+  color: var(--gray-800);
+  border: 1px solid var(--gray-400);
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.aside__price__input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input__price {
+  width: 6rem;
+  padding: 0.35rem;
+  border-radius: 0.35rem;
+  border: 1px solid var(--gray-400);
+}
+
+.btn__aside--submit {
+  text-align: left;
+  background: none;
+  border: none;
+  text-decoration-line: underline;
+  color: var(--gray-700);
+}
+
+/* 넘버 화살표 없애기 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox  */
+input[type='number'] {
+  -moz-appearance: textfield;
 }
