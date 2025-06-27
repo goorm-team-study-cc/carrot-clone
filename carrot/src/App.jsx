@@ -4,7 +4,7 @@ import ProductList from "./pages/ProductList";
 import CarrotMain from "./pages/CarrotMain";
 import ProductDetail from "./pages/ProductDetail";
 import { Outlet, Route, Routes, Link } from "react-router-dom";
-
+import "./App.css"
 function App() {
   return (
     <>
@@ -24,6 +24,7 @@ function App() {
       <Outlet />
 
       <Footer />
+      
     </>
   );
 }
