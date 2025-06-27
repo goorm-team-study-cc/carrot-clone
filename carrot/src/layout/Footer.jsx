@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
         <div className="footer-icon">
             <div>
-                <div className="icon-logo">당근</div> 
+                <div className="icon-logo">당 근</div> 
                 <div className="icon-i">
                     <a href="#"><img className='ica' src={facebookImg} alt="facebook" /></a>
                     <a href="#" ><img className='ica' src={inImg} alt="instagram" /></a>
