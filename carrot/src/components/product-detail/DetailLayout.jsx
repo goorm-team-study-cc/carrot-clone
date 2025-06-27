@@ -36,10 +36,10 @@ export default function DetailLayout() {
   return (
     <>
       <nav>
-        <div className="nav">
+        <div className="nav-product">
           <span> 홈 </span>
           <span>></span>
-          <span> 중고거래 </span>
+          <span> 중고 거래 </span>
           <span>></span>
           <span> {productData.title} </span>
         </div>
@@ -97,8 +97,8 @@ export default function DetailLayout() {
           <span className="ml-auto main-color">더 구경하기 ></span>
         </div>
         <div className="user-products__list flex-row">
-          {userProducts.map((product) => (
-            <Preview product={product} />
+          {userProducts.map((product, index) => (
+            <Preview key={index} product={product} />
           ))}
         </div>
       </div>
@@ -108,7 +108,7 @@ export default function DetailLayout() {
           <span className="ml-auto main-color">더 구경하기 ></span>
         </div>
         <div className="popular-products__list flex-row">
-          {popularProducts.map((product) => (
+          {popularProducts.map((product, index) => (
             <Preview product={product} />
           ))}
         </div>

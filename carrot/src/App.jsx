@@ -10,12 +10,13 @@ function App() {
     <>
       <Header />
 
-      <nav>
+      {/* <nav>
         <Link to="/carrotmain">메인 화면</Link> <br />
         <Link to="/productlist">상품 리스트</Link> <br />
         <Link to="/productdetail/124">상세 페이지</Link>
-      </nav>
+      </nav> */}
       <Routes>
+        <Route path="/" element={<CarrotMain />} />
         <Route path="/carrotmain" element={<CarrotMain />} />
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/productdetail/:productId" element={<ProductDetail />} />
