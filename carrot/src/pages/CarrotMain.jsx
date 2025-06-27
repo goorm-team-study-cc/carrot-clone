@@ -6,7 +6,7 @@ export default function CarrotMain() {
     <div class="body1">
 
         <h2>당근에서 찾고 계신가요?</h2>
-
+        
         <div className="location">
             <div className="">
             <button className="location-btn">송도동
