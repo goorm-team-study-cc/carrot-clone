@@ -1,14 +1,40 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useLocation } from '../../contexts/LocationContext';
 
+function clickReducer(state, action) {
+  switch (action.type) {
+    case 'SELECT':
+      return { selectedPrice: action.payload }; // payload: price 값
+    default:
+      return state;
+  }
+}
+
 export default function ProductAside() {
+  //로컬 데이터에 들어있는 지역
+  const VALID_LOCATIONS = ['서초동', '잠원동', '반포동'];
   //지역정보 context
-  const { location, setLocation } = useLocation();
+  const { location, setLocation, price, setPriceFilter } = useLocation();
   //지역 전체 보여줄지 여부
   const [showAll, setShowAll] = useState(false);
   const [selected, setSelected] = useState(locationArr[0]); // 첫 번째 값 기본 선택
   const visibleItems = showAll ? locationArr : locationArr.slice(0, 6);
+  //가격필터 토글(버튼)
+  const [isClick, clickProvider] = useReducer(clickReducer, { selectedPrice: null });
+  //가격필터 입력값
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+
+  //로컬 데이터에 없는 데이터인경우 반포로 return
+  function validateLocation(location, fallback = '반포동') {
+    return VALID_LOCATIONS.includes(location) ? location : fallback;
+  }
+
+  /** input에 가격 입력 및 적용하기 버튼을 눌렸을 때
+   * 위에 버튼과 값이 일치하면 선택, 하지만 적용은 안됨.
+   * 만약 범위가 아닌경우 버튼은 클릭만 해제
+   */
 
   return (
     <section className='product__aside__wrapper'>
@@ -35,7 +61,7 @@ export default function ProductAside() {
                   checked={selected === value}
                   onChange={() => {
                     setSelected(value);
-                    setLocation(value);
+                    setLocation(validateLocation(value));
                   }}
                 />
               ))}
@@ -59,15 +85,40 @@ export default function ProductAside() {
             <div className='aside__filter aside__price'>
               {priceFilter.map((value) => (
                 <figure key={value.price}>
-                  <button className='btn__aside--price'>{value.title}</button>
+                  <button
+                    className='btn__aside--price'
+                    style={{
+                      backgroundColor: isClick.selectedPrice === value.price ? 'black' : 'white',
+                      color: isClick.selectedPrice === value.price ? 'white' : 'black',
+                    }}
+                    onClick={() => {
+                      clickProvider({ type: 'SELECT', payload: value.price });
+                      setPriceFilter([0, value.price]); // ✅ 가격 필터 context 업데이트 (선택사항)
+                    }}>
+                    {value.title}
+                  </button>
                 </figure>
               ))}
               <div className='aside__price__input'>
-                <input type='number' name='minPrice' id='minPrice' className='input__price' />
+                <input
+                  type='number'
+                  name='minPrice'
+                  id='minPrice'
+                  className='input__price'
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                />
                 <span> - </span>
-                <input type='number' name='maxPrice' id='maxPrice' className='input__price' />
+                <input
+                  type='number'
+                  name='maxPrice'
+                  id='maxPrice'
+                  className='input__price'
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                />
               </div>
-              <input className='btn__aside--submit' type='submit' value='적용하기' />
+              <input className='btn__aside--submit' type='button' value='적용하기' />
             </div>
           </div>
         </section>
