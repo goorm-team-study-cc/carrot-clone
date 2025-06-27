@@ -1,28 +1,34 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useLocation } from '../../contexts/LocationContext';
+
+//로컬 데이터에 들어있는 지역
+const VALID_LOCATIONS = ['서초동', '잠원동', '반포동'];
 
 function clickReducer(state, action) {
   switch (action.type) {
     case 'SELECT':
       return { selectedPrice: action.payload }; // payload: price 값
+    case 'RESET':
+      return { selectedPrice: null };
     default:
       return state;
   }
 }
-
-export default function ProductAside() {
-  //로컬 데이터에 들어있는 지역
-  const VALID_LOCATIONS = ['서초동', '잠원동', '반포동'];
-  //지역정보 context
-  const { location, setLocation, price, setPriceFilter } = useLocation();
+export default function ProductAside({ setBadgeVisible }) {
+  //전역변수
+  const { location, setLocation, setPriceFilter, filterBadge, setFilter } = useLocation();
   //지역 전체 보여줄지 여부
   const [showAll, setShowAll] = useState(false);
-  console.log(locationArr.indexOf(location));
+  //라디오버튼 선택 초기화
   const [selected, setSelected] = useState(locationArr[locationArr.indexOf(location)]);
+  const [selectedKeyword, setSelectKeyword] = useState(-1);
+  //필터->지역 더보기/접기 버튼
   const visibleItems = showAll ? locationArr : locationArr.slice(0, 6);
-  //가격필터 토글(버튼)
-  const [isClick, clickProvider] = useReducer(clickReducer, { selectedPrice: null });
+  //가격필터 토글(버튼 색상 변하게)
+  const [clickState, clickDispatch] = useReducer(clickReducer, {
+    selectedPrice: null,
+  });
   //가격필터 입력값
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
@@ -32,17 +38,37 @@ export default function ProductAside() {
     return VALID_LOCATIONS.includes(location) ? location : fallback;
   }
 
-  /** input에 가격 입력 및 적용하기 버튼을 눌렸을 때
-   * 위에 버튼과 값이 일치하면 선택, 하지만 적용은 안됨.
-   * 만약 범위가 아닌경우 버튼은 클릭만 해제
-   */
-  console.log(price);
+  useEffect(() => {
+    if (!('filterPric' in filterBadge)) {
+      setPriceFilter((prev) => {
+        if (prev.minPrice !== 0 || prev.maxPrice !== Number.MAX_VALUE) {
+          return { minPrice: 0, maxPrice: Number.MAX_VALUE };
+        }
+        return prev;
+      });
+      setMaxPrice((prev) => {
+        if (prev !== 0) return 0;
+        return prev;
+      });
+      clickDispatch({ type: 'RESET' });
+    }
+
+    if (!('filterCate' in filterBadge)) {
+      setSelectKeyword((prev) => {
+        if (prev !== Number.MAX_VALUE) {
+          return Number.MAX_VALUE;
+        }
+        return prev;
+      });
+    }
+  }, [filterBadge]);
+
   return (
     <section className='product__aside__wrapper'>
       <aside className='product__aside'>
         <header className='product__aside__header'>
           <h3>필터</h3>
-          <a href='#'>초기화</a>
+          <a onClick={() => setFilter({})}>초기화</a>
         </header>
         <section className='product__aside__section'>
           <div className='section__isSell'>
@@ -76,9 +102,23 @@ export default function ProductAside() {
           <div className='market__aside__filter'>
             <h4>카테고리</h4>
             <div className='aside__filter aside__category'>
-              {keywords.map((value, index) => (
-                <Form.Check key={`category-${index}`} type='radio' name='categoryCheck' id={index} label={value} />
-              ))}
+              {keywords.map((value, index) => {
+                return (
+                  <Form.Check
+                    key={`category-${index}`}
+                    type='radio'
+                    onChange={() => {
+                      setBadgeVisible(true); // ← 여기서 FilterBadge 보이게
+                      setFilter((prev) => ({ ...prev, ['filterCate']: value }));
+                      setSelectKeyword(index);
+                    }}
+                    name='categoryCheck'
+                    id={index}
+                    label={value}
+                    checked={selectedKeyword === index}
+                  />
+                );
+              })}
             </div>
           </div>
           <div className='market__aside__filter'>
@@ -89,12 +129,16 @@ export default function ProductAside() {
                   <button
                     className='btn__aside--price'
                     style={{
-                      backgroundColor: isClick.selectedPrice === value.price ? 'black' : 'white',
-                      color: isClick.selectedPrice === value.price ? 'white' : 'black',
+                      backgroundColor: clickState.selectedPrice === value.price ? 'black' : 'white',
+                      color: clickState.selectedPrice === value.price ? 'white' : 'black',
                     }}
                     onClick={() => {
-                      clickProvider({ type: 'SELECT', payload: value.price });
-                      setPriceFilter([0, value.price]); // ✅ 가격 필터 context 업데이트 (선택사항)
+                      clickDispatch({ type: 'SELECT', payload: value.price });
+                      setPriceFilter({ minPrice: 0, maxPrice: value.price });
+                      setMinPrice(0);
+                      setMaxPrice(Number(value.price));
+                      setBadgeVisible(true); // ← 여기서 FilterBadge 보이게
+                      setFilter((prev) => ({ ...prev, ['filterPric']: value.title }));
                     }}>
                     {value.title}
                   </button>
@@ -178,7 +222,7 @@ const keywords = [
   '기타 중고물품',
   '삽니다',
 ];
-const priceFilter = [
+export const priceFilter = [
   { price: 0, title: '나눔' },
   { price: 5000, title: '5,000원 이하' },
   { price: 10000, title: '10,000원 이하' },

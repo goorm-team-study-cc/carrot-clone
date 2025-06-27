@@ -3,8 +3,9 @@ import Card from 'react-bootstrap/Card';
 import products from '../../assets/products.json';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from '../../contexts/LocationContext';
+import FilterBadge from './FilterBadge';
 
-export default function ProductItemList() {
+export default function ProductItemList({ isBadgeVisible }) {
   const [count, setCount] = useState(48);
   const [items, setItems] = useState([]);
   let navigate = useNavigate();
@@ -42,13 +43,14 @@ export default function ProductItemList() {
     const locationFilter = products.filter((data) => data['regionId'].name === location);
     //가격 필터링
     const priceFilter = locationFilter.filter((data) => {
-      return data.price >= price[0] && data.price <= price[1];
+      return data.price >= price.minPrice && data.price <= price.maxPrice;
     });
     return priceFilter;
   }
 
   return (
     <section className='Product__list'>
+      {isBadgeVisible && <FilterBadge />}
       <div className='list--right'>
         {items.map((item) => (
           <Card

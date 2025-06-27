@@ -4,10 +4,11 @@ const LocationContext = createContext();
 
 export const LocationProvider = ({ children }) => {
   const [location, setLocation] = useState('서초동');
-  const [price, setPriceFilter] = useState([0, Number.MAX_VALUE]);
+  const [price, setPriceFilter] = useState({ minPrice: 0, maxPrice: Number.MAX_VALUE });
+  const [filterBadge, setFilter] = useState({}); //filterPric: '', filterCate: ''
 
   return (
-    <LocationContext.Provider value={{ location, setLocation, price, setPriceFilter }}>
+    <LocationContext.Provider value={{ location, setLocation, price, setPriceFilter, filterBadge, setFilter }}>
       {children}
     </LocationContext.Provider>
   );

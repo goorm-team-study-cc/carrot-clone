@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer, useState } from 'react';
 import '../assets/ProductList.css';
 import { useLocation } from '../contexts/LocationContext';
 //Bootstrap
@@ -9,7 +9,9 @@ import ProductItemList from '../components/product-list/ProductItemList';
 import { Link } from 'react-router-dom';
 
 export default function ProductList() {
-  const { location, setLocation } = useLocation();
+  const { location } = useLocation();
+  //가격필터 토글(버튼)
+  const [isBadgeVisible, setBadgeVisible] = useState(false);
 
   return (
     <div className='market__list-container'>
@@ -28,8 +30,8 @@ export default function ProductList() {
           서울특별시 서초구 {location} 중고거래
         </h2>
         <section className='market__item__section'>
-          <ProductAside />
-          <ProductItemList />
+          <ProductAside setBadgeVisible={setBadgeVisible} />
+          <ProductItemList isBadgeVisible={isBadgeVisible} />
         </section>
       </div>
     </div>
