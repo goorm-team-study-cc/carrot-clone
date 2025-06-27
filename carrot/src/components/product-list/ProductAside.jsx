@@ -18,7 +18,8 @@ export default function ProductAside() {
   const { location, setLocation, price, setPriceFilter } = useLocation();
   //지역 전체 보여줄지 여부
   const [showAll, setShowAll] = useState(false);
-  const [selected, setSelected] = useState(locationArr[0]); // 첫 번째 값 기본 선택
+  console.log(locationArr.indexOf(location));
+  const [selected, setSelected] = useState(locationArr[locationArr.indexOf(location)]);
   const visibleItems = showAll ? locationArr : locationArr.slice(0, 6);
   //가격필터 토글(버튼)
   const [isClick, clickProvider] = useReducer(clickReducer, { selectedPrice: null });
@@ -35,7 +36,7 @@ export default function ProductAside() {
    * 위에 버튼과 값이 일치하면 선택, 하지만 적용은 안됨.
    * 만약 범위가 아닌경우 버튼은 클릭만 해제
    */
-
+  console.log(price);
   return (
     <section className='product__aside__wrapper'>
       <aside className='product__aside'>
