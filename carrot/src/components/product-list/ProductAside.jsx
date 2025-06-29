@@ -50,6 +50,7 @@ export default function ProductAside({ setBadgeVisible }) {
         if (prev !== 0) return 0;
         return prev;
       });
+      setMinPrice(0);
       clickDispatch({ type: 'RESET' });
     }
 
@@ -62,6 +63,32 @@ export default function ProductAside({ setBadgeVisible }) {
       });
     }
   }, [filterBadge]);
+
+  //적용하기 버튼 클릭
+  function handleFilterPrice() {
+    console.log(`min: ${minPrice} max: ${maxPrice}`);
+    setPriceFilter({ minPrice: Number(minPrice), maxPrice: Number(maxPrice) });
+    //price title 을 넣어야하는데! 0으로 시작하고 0,5000,10000,20000 일 때 배열에서 찾아야함
+    //priceFilter.some(filter => filter.price === maxPrice)
+    setFilter((prev) => ({
+      ...prev,
+      ['filterPric']:
+        Number(minPrice) === 0 && priceFilter.some((filter) => filter.price === Number(maxPrice))
+          ? priceFilter.find((filter) => filter.price === Number(maxPrice)).title
+          : `${Number(minPrice).toLocaleString()}원 ~ ${Number(maxPrice).toLocaleString()}원`,
+    }));
+
+    setBadgeVisible(true);
+  }
+
+  //값 변경할 때
+  function changeFilterPrice(val, type) {
+    if ((type === 'MIN' && Number(val) !== 0) || Number(minPrice) !== 0) {
+      clickDispatch({ type: 'RESET' });
+      return;
+    }
+    clickDispatch({ type: 'SELECT', payload: type === 'MAX' ? Number(val) : Number(maxPrice) });
+  }
 
   return (
     <section className='product__aside__wrapper'>
@@ -151,7 +178,10 @@ export default function ProductAside({ setBadgeVisible }) {
                   id='minPrice'
                   className='input__price'
                   value={minPrice}
-                  onChange={(e) => setMinPrice(e.target.value)}
+                  onChange={(e) => {
+                    changeFilterPrice(e.target.value, 'MIN');
+                    setMinPrice(e.target.value);
+                  }}
                 />
                 <span> - </span>
                 <input
@@ -160,10 +190,18 @@ export default function ProductAside({ setBadgeVisible }) {
                   id='maxPrice'
                   className='input__price'
                   value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
+                  onChange={(e) => {
+                    changeFilterPrice(e.target.value, 'MAX');
+                    setMaxPrice(e.target.value);
+                  }}
                 />
               </div>
-              <input className='btn__aside--submit' type='button' value='적용하기' />
+              <input
+                onClick={() => handleFilterPrice()}
+                className='btn__aside--submit'
+                type='button'
+                value='적용하기'
+              />
             </div>
           </div>
         </section>
