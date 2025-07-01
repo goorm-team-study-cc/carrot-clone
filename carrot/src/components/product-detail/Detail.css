@@ -176,8 +176,8 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   position: fixed;
-  width: 20rem;
-  height: 20rem;
+  width: 30rem;
+  height: 30rem;
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
@@ -189,6 +189,13 @@ body::-webkit-scrollbar {
 .modal-box img{
   width: 60%;
   aspect-ratio: 1/1;
+}
+
+.modal-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 /*/ ////////////////
@@ -204,6 +211,7 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
 }
+
 
 /* ml = margin left의 약자 */
 .ml-auto {
@@ -241,4 +249,8 @@ body::-webkit-scrollbar {
 .p1 {
   font-size: 1rem;
   font-weight: 400;
+}
+
+.p-1 {
+  padding: 1rem;
 }
