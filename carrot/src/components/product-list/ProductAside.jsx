@@ -21,8 +21,8 @@ export default function ProductAside({ setBadgeVisible }) {
   //지역 전체 보여줄지 여부
   const [showAll, setShowAll] = useState(false);
   //라디오버튼 선택 초기화
-  const [selected, setSelected] = useState(locationArr[locationArr.indexOf(location)]);
-  const [selectedKeyword, setSelectKeyword] = useState(-1);
+  const [selected, setSelected] = useState(locationArr[locationArr.indexOf(location)]); //위치
+  const [selectedKeyword, setSelectKeyword] = useState(-1); //카테고리
   //필터->지역 더보기/접기 버튼
   const visibleItems = showAll ? locationArr : locationArr.slice(0, 6);
   //가격필터 토글(버튼 색상 변하게)
@@ -110,7 +110,7 @@ export default function ProductAside({ setBadgeVisible }) {
                   key={`location-${index}`}
                   type={'radio'}
                   name='locationCheck'
-                  id={index}
+                  id={`location-${index}`}
                   label={value}
                   checked={selected === value}
                   onChange={() => {
@@ -140,7 +140,7 @@ export default function ProductAside({ setBadgeVisible }) {
                       setSelectKeyword(index);
                     }}
                     name='categoryCheck'
-                    id={index}
+                    id={`category-${index}`} //id 값은 유일한 값이여야함!!
                     label={value}
                     checked={selectedKeyword === index}
                   />
