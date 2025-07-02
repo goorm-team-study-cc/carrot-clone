@@ -1,10 +1,10 @@
 
 .header{
     display: flex;
-    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    justify-content: space-between;
 }
 .header  p {
     color: orangered;
@@ -134,4 +134,29 @@
 .ica {
     width: 30px;
     height: 30px;
+}
+
+.logoset{
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+}
+
+.ww
+{
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+}
+
+.sb p {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+
+
+a:hover{
+  background-color: #333;
+  color: #ccc;
 }
