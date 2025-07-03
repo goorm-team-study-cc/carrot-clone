@@ -6,6 +6,7 @@ import Preview from "./Preview";
 import { useParams } from "react-router-dom";
 import Modal from "./Modal";
 
+
 export default function DetailLayout() {
   const { productId } = useParams();
   const productData = products.find((product) => product.id == productId);
@@ -109,12 +110,12 @@ export default function DetailLayout() {
         </div>
         <div className="popular-products__list flex-row">
           {popularProducts.map((product, index) => (
-            <Preview product={product} />
+            <Preview key={index} product={product} />
           ))}
         </div>
       </div>
       {modalOn ? (<Modal dispatch={handleModal} />) : <></>}
-
+      {/* <Modal /> */}
     </>
   );
 }
