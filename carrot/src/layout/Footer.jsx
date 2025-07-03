@@ -3,6 +3,7 @@ import facebookImg from '../assets/face.png';
 import youImg from '../assets/you.png';
 import inImg from '../assets/in.jpeg';
 
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -27,7 +28,7 @@ export default function Footer() {
         <p>주소 서울특별시 구로구 디지털로 300, 10층 (당근서비스)</p>
         <p>전화1877-9737 고객문의 cs@daangnservice.com</p>
         </div>
-        <div>
+        <div className='f-f-f'>
             <a href="">이용약관</a>
             <a href="">개인정보처리방침</a>
             <a href="">운영정책</a>
