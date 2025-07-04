@@ -8,14 +8,15 @@ export default function Preview({ product }) {
 
   function handleClick() {
     navigate(`/productdetail/${product.id}`);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    // window.scrollTo({
+    //   top: 0,
+    //   behavior: "smooth",
+    // });
   }
 
   return (
     <>
+
       <div onClick={handleClick} className="preview flex-col">
         <img className="preview__image" src={product.thumbnail} />
         <span className="preview__title p1">{product.title}</span>

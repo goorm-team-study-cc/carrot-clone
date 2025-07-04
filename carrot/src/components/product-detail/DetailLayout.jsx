@@ -34,6 +34,13 @@ export default function DetailLayout() {
     document.body.style.overflow = !modalOn ? 'hidden' : 'auto';
   }
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   return (
     <>
       <nav>
