@@ -20,6 +20,8 @@ export default function ProductItemList({ isBadgeVisible }) {
   }, [count, location, price]); // ✅ count가 바뀔 때마다 실행됨
 
   function clickMore() {
+    //현재 스크롤 위치 저장
+    const prevScrollY = window.scrollY;
     const locationFiltered = filterItem();
     // 만약 count가 데이터 개수보다 크면 예외처리
     if (count >= locationFiltered.length) {
@@ -27,6 +29,10 @@ export default function ProductItemList({ isBadgeVisible }) {
       return;
     }
     setCount((prev) => prev * 2);
+
+    setTimeout(() => {
+      window.scrollTo({ top: prevScrollY, behavior: 'auto' });
+    }, 0);
   }
 
   function handleClick(id) {
