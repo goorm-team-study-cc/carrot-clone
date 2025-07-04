@@ -8,10 +8,10 @@ export default function Preview({ product }) {
 
   function handleClick() {
     navigate(`/productdetail/${product.id}`);
-    // window.scrollTo({
-    //   top: 0,
-    //   behavior: "smooth",
-    // });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
   return (
